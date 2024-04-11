@@ -1,0 +1,19 @@
+.header {
+    box-shadow: 0 10px 30px 0 rgba(17, 38, 146, 0.05);
+    width: 100%;
+    background: #fff;
+    border-radius: 0rem 0rem 1rem 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.header_wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.box {
+    flex-basis: 70%;
+}

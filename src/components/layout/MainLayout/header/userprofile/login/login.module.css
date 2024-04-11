@@ -1,0 +1,78 @@
+.loginWrapper {
+    position: relative;
+}
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: calc(100% + 15px);
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    gap: 1rem;
+    z-index: 1000;
+}
+
+.loginForm::after {
+    content: '';
+    width: 0;
+    height: 0;
+    display: block;
+    position: absolute;
+    z-index: 10;
+    border: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    margin-left: -10px;
+    left: 50%;
+    border-bottom: 10px solid #fff;
+    top: -10px;
+}
+
+.loginForm .wrapperText {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.loginForm .wrapperText span {
+    color: #2E46BA;
+    cursor: auto;
+    cursor: pointer;
+}
+
+.loginForm .wrapperText span:hover {
+    color: #304ddb;
+    cursor: auto;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.loginForm .wrapperText span.active {
+    color: #304ddb;
+    cursor: auto;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+
+
+.btnLogin {
+    padding: 10px 5px 10px 10px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+
+}
+
+.btnLogin span {
+    font-weight: 500;
+}
+
+.btnLogin:hover {
+    background-color: #F6F8FB;
+}

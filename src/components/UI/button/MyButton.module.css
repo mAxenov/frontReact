@@ -1,0 +1,19 @@
+.myButton {
+    padding: 10px;
+    border-radius: 2px;
+    background: #5d73e1;
+    border: none;
+    cursor: pointer;
+    color: white;
+    display: block;
+    text-decoration: none;
+}
+
+.myButton:hover {
+    background: #5d73e1d3;
+}
+
+.myButton:disabled {
+    background-color: #adb5bd;
+    cursor: not-allowed;
+}

@@ -1,0 +1,9 @@
+.logo {
+    display: flex;
+    align-items: center;
+    font-weight: 800;
+    line-height: 1;
+    font-size: 1.35rem;
+    flex-basis: 30%;
+    color: #079AA2;
+}

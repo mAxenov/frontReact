@@ -1,0 +1,17 @@
+.section {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 400px;
+    gap: 1rem;
+}
+
+.section .point {
+    display: flex;
+    justify-content: space-between;
+}
+
+.section .head {
+    font-weight: 700;
+    font-size: 1.2rem;
+}
