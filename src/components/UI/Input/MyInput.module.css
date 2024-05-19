@@ -17,6 +17,13 @@
     right: 0.875rem;
 }
 
+.inputGroup label {
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #8A92A6;
+}
+
 .myInput {
     padding: 10px;
     border: 1px solid #EEEEEE;

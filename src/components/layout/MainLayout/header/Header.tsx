@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import Wrapper from '../../wrapper/Wrapper';
 import styles from './header.module.css';
 import Logo from './logo/Logo';
@@ -8,7 +9,9 @@ function Header() {
     <header className={styles.header}>
       <Wrapper>
         <nav className={styles.header_wrapper}>
-          <Logo />
+          <NavLink to="/" style={{ textDecoration: 'none' }}>
+            <Logo />
+          </NavLink>
           <UserProfile />
         </nav>
       </Wrapper>

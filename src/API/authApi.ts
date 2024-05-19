@@ -1,8 +1,6 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { apiSlice } from './apiSlice';
 
-export const authApi = createApi({
-  reducerPath: 'authApi',
-  baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_API_URL }),
+export const authApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     login: builder.mutation({
       query: (body) => ({
@@ -24,8 +22,15 @@ export const authApi = createApi({
         method: 'POST',
       }),
     }),
+    checkAuth: builder.query({
+      query: () => ({ url: 'auth/refresh', method: 'GET' }),
+    }),
   }),
 });
 
-export const { useLoginMutation, useRegistrationMutation, useLogoutMutation } =
-  authApi;
+export const {
+  useLoginMutation,
+  useRegistrationMutation,
+  useLogoutMutation,
+  useCheckAuthQuery,
+} = authApi;

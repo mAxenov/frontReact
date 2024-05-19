@@ -1,0 +1,12 @@
+.wrapper {
+    border-radius: 0.25rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 1.2rem;
+    background-color: #fff;
+}
+
+.head {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}

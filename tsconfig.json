@@ -21,6 +21,7 @@
     "noFallthroughCasesInSwitch": true,
 
     "baseUrl": ".",
+    "types": ["redux-persist"],
     "paths": { "src/*": ["src/*"] }
   },
   "include": ["src"],

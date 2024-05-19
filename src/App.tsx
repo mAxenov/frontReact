@@ -1,13 +1,16 @@
 import './App.css';
-import MainLayout from './components/layout/MainLayout';
-import SearchHotel from './pages/searchHotel';
+import { useCheckAuthQuery } from './API/authApi';
+import Loader from './components/UI/Loader/Loader';
+import CustomRoutes from './Routes';
 
 function App() {
-  return (
-    <MainLayout>
-      <SearchHotel />
-    </MainLayout>
-  );
+  const { isLoading } = useCheckAuthQuery({});
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  return <CustomRoutes />;
 }
 
 export default App;

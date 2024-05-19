@@ -1,6 +1,6 @@
 .myButton {
-    padding: 10px;
-    border-radius: 2px;
+    padding: 0.625rem 1.5rem 0.625rem 1.5rem;
+    border-radius: 0.2rem;
     background: #5d73e1;
     border: none;
     cursor: pointer;
@@ -9,8 +9,13 @@
     text-decoration: none;
 }
 
+.myButton .success {
+    color: #1AA053;
+}
+
 .myButton:hover {
-    background: #5d73e1d3;
+    opacity: 0.8;
+    transition: 0.3s;
 }
 
 .myButton:disabled {

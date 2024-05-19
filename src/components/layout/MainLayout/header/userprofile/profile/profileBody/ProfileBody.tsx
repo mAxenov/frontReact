@@ -10,6 +10,11 @@ type TProps = {
 function ProfileBody({ user }: TProps) {
   const [logout] = useLogoutMutation();
 
+  const onClickHandler = async () => {
+    await logout({});
+    //window.location.replace('/');
+  };
+
   return (
     <div className={styles.section}>
       <div className={styles.head}>Учетная запись</div>
@@ -29,7 +34,7 @@ function ProfileBody({ user }: TProps) {
         <div className={styles.pointText}>Права доступа:</div>
         <div className={styles.pointText}>{user.role}</div>
       </div>
-      <MyButton onClick={logout}>Выйти</MyButton>
+      <MyButton onClick={onClickHandler}>Выйти</MyButton>
     </div>
   );
 }

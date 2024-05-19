@@ -28,7 +28,12 @@ const MyInput = ({
   return (
     <div className={styles.inputGroup}>
       {label && <label htmlFor={props.name}>{label}</label>}
-      <input className={`${inputClasses.join(' ')}`} {...field} {...props} />
+      <input
+        id={props.name}
+        className={`${inputClasses.join(' ')}`}
+        {...field}
+        {...props}
+      />
       <div className={styles.wrapperSvg}>
         {meta.touched && meta.error && !disableVerify ? (
           <svg

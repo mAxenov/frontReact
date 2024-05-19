@@ -7,7 +7,7 @@ function Logo() {
       <LogoSVG
         style={{ width: '2.5rem', height: '2.5rem', marginRight: '1rem' }}
       />
-      <div> {'БРОНЬУЮТ'} </div>
+      <div>БРОНЬУЮТ</div>
     </div>
   );
 }

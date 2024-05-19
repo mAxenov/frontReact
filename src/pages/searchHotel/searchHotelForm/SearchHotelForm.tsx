@@ -18,7 +18,7 @@ function SearchHotelForm() {
       //     .min(6, 'Минимум 6 символов')
       //     .required('Обязательное поле'),
       // })}
-      onSubmit={async (values, { setErrors }) => {
+      onSubmit={async (values) => {
         console.log(values);
         // login(values)
         //   .unwrap()
@@ -48,8 +48,8 @@ function SearchHotelForm() {
               placeholder="Дата выезда"
               disableVerify={true}
             />
+            <MyButton type="submit">Искать</MyButton>
           </div>
-          <MyButton type="submit">Искать</MyButton>
         </Form>
       )}
     </Formik>

@@ -27,7 +27,7 @@ function FormLogin() {
       onSubmit={async (values, { setErrors }) => {
         login(values)
           .unwrap()
-          // .then(() => onClose())
+          .then(() => window.location.reload())
           .catch(({ data }) => setErrors({ password: t(data?.message) }));
       }}
     >
