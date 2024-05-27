@@ -1,5 +1,6 @@
+import { BaseQueryArg } from 'node_modules/@reduxjs/toolkit/dist/query/baseQueryTypes';
 import { apiSlice } from './apiSlice';
-import { THotel } from 'src/types/hotel';
+import { THotel, TSearchHotelParams } from 'src/types/hotel';
 
 export const hotelsApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -20,10 +21,17 @@ export const hotelsApi = apiSlice.injectEndpoints({
       invalidatesTags: ['Hotel'],
     }),
     getHotels: builder.query<THotel[], string>({
-      query: () => ({
-        url: '/admin/hotels',
-        method: 'GET',
-      }),
+      query: (arg) => {
+        const { limit, offset, title }: TSearchHotelParams = arg;
+        const params = new URLSearchParams();
+        if (limit) params.append('limit', limit.toString());
+        if (offset) params.append('offset', offset.toString());
+        if (title) params.append('title', title);
+        return {
+          url: `/admin/hotels?${params.toString()}`,
+          method: 'GET',
+        };
+      },
       providesTags: ['Hotel'],
     }),
   }),

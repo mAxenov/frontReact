@@ -38,7 +38,9 @@ function ShowHotel({
           <MyButton color="secondary" onClick={editHandler}>
             Редактировать
           </MyButton>
-          <MyButton onClick={roomHandler}>Добавить номер</MyButton>
+          {roomHandler && (
+            <MyButton onClick={roomHandler}>Добавить номер</MyButton>
+          )}
         </div>
       </div>
     </>

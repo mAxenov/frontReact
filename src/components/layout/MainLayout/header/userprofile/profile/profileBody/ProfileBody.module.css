@@ -15,3 +15,22 @@
     font-weight: 700;
     font-size: 1.2rem;
 }
+
+
+.pointButton {
+    cursor: pointer;
+    font-weight: 500;
+    border: 1px solid #079AA2;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    color: #079AA2;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+}
+
+.pointButton:hover {
+    background-color: #079AA2;
+    color: white;
+    transition: 0.4s ease-in-out all;
+}

@@ -10,3 +10,9 @@ export type TCreateHotel = {
   description: string;
   images?: string[];
 };
+
+export type TSearchHotelParams = {
+  limit?: number | undefined;
+  offset?: number | undefined;
+  title?: string | undefined;
+};

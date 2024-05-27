@@ -2,6 +2,7 @@ import { useLogoutMutation } from 'src/API/authApi';
 import MyButton from 'src/components/UI/button/MyButton';
 import { TUser } from 'src/types/auth.type';
 import styles from './ProfileBody.module.css';
+import { Link } from 'react-router-dom';
 
 type TProps = {
   user: TUser;
@@ -9,7 +10,6 @@ type TProps = {
 
 function ProfileBody({ user }: TProps) {
   const [logout] = useLogoutMutation();
-
   const onClickHandler = async () => {
     await logout({});
     //window.location.replace('/');
@@ -34,9 +34,17 @@ function ProfileBody({ user }: TProps) {
         <div className={styles.pointText}>Права доступа:</div>
         <div className={styles.pointText}>{user.role}</div>
       </div>
+      {user.role === 'client' && (
+        <div className={styles.point}>
+          <Link to={'/client/reservations'} className={styles.pointButton}>
+            <div className={styles.pointText}>Мои бронирования</div>
+          </Link>
+        </div>
+      )}
+
       <MyButton onClick={onClickHandler}>Выйти</MyButton>
     </div>
   );
 }
-
+//onClick={myReservationHandler}
 export default ProfileBody;

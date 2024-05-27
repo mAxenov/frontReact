@@ -1,6 +1,7 @@
-import { admin, manager, noRole } from 'src/assets/roles';
+import { admin, client, manager, noRole } from 'src/assets/roles';
 import MainLayout from 'src/components/layout/MainLayout';
 import Hotel from 'src/pages/Hotel';
+import Reservations from 'src/pages/Reservations/Reservations';
 import AllHotels from 'src/pages/allHotels';
 import CreateHotel from 'src/pages/createHotel';
 import SearchHotel from 'src/pages/searchHotel';
@@ -34,6 +35,12 @@ const protectedRoutes = {
       path: 'admin/hotels/:id',
       element: <Hotel />,
       roles: admin,
+    },
+
+    {
+      path: 'client/reservations',
+      element: <Reservations />,
+      roles: client,
     },
   ],
 };

@@ -3,10 +3,19 @@ import MyInput from 'src/components/UI/Input/MyInput';
 import styles from './searchHotelForm.module.css';
 import MyButton from 'src/components/UI/button/MyButton';
 
-function SearchHotelForm() {
+function SearchHotelForm({
+  formHandler,
+}: {
+  formHandler: (dto: {
+    title?: string;
+    startDate?: Date;
+    endDate?: Date;
+  }) => Promise<void>;
+}) {
   return (
     <Formik
       initialValues={{
+        name: '',
         startDate: '',
         endDate: '',
       }}
@@ -19,6 +28,7 @@ function SearchHotelForm() {
       //     .required('Обязательное поле'),
       // })}
       onSubmit={async (values) => {
+        formHandler(values);
         console.log(values);
         // login(values)
         //   .unwrap()
@@ -29,7 +39,7 @@ function SearchHotelForm() {
       {() => (
         <Form className={styles.form}>
           <MyInput
-            name="text"
+            name="title"
             type="text"
             placeholder="Введите название гостиницы (необязательно)"
             disableVerify={true}
