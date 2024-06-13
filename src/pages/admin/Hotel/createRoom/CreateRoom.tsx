@@ -1,6 +1,6 @@
 import { useCreateRoomMutation } from 'src/API/roomsApi';
 import Box from 'src/components/UI/box/Box';
-import CreateForm from 'src/pages/createHotel/createForm/CreateForm';
+import CreateForm from 'src/pages/admin/CreateHotel/createForm/CreateForm';
 
 interface CreateRoomProps {
   id: string;
@@ -34,6 +34,5 @@ function CreateRoom(props: CreateRoomProps) {
     </Box>
   );
 }
-
 
 export default CreateRoom;

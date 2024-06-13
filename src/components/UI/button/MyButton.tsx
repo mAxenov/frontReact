@@ -10,10 +10,11 @@ const colorButton = {
 
 interface IMyButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   color?: keyof typeof colorButton;
+  className?: string;
 }
 
 const MyButton = React.memo<IMyButtonProps>(
-  ({ color = 'primary', children, ...rest }) => {
+  ({ color = 'primary', children, className, ...rest }) => {
     const classes = [cl.myButton, rest.disabled && cl.disabled]
       .filter(Boolean)
       .join(' ');
@@ -21,7 +22,7 @@ const MyButton = React.memo<IMyButtonProps>(
     return (
       <button
         style={{ backgroundColor: colorButton[color] }}
-        className={classes}
+        className={`${classes} ${className ? className : ''}`}
         {...rest}
       >
         {children}

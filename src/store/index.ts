@@ -2,10 +2,12 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 //import { persistStore } from 'redux-persist';
 import { apiSlice } from 'src/API/apiSlice';
 import authReducer from 'src/store/slices/authSlice';
+import searchReducer from 'src/store/slices/searchSlice';
 
 const rootReducer = combineReducers({
   [apiSlice.reducerPath]: apiSlice.reducer,
   auth: authReducer,
+  search: searchReducer,
 });
 
 const store = configureStore({

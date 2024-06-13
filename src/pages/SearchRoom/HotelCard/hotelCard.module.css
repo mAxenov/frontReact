@@ -1,13 +1,13 @@
-.reservationCard {
+.hotelCard {
     display: flex;
     justify-content: stretch;
     min-height: 240px;
-    max-height: 300px;
+    max-height: 240px;
     padding: 0;
     border-radius: 0.5rem;
 }
 
-.reservationCard:hover {
+.hotelCard:hover {
     box-shadow: 0 4px 6px rgba(17, 38, 146, 0.15);
 }
 
@@ -19,6 +19,7 @@
     align-items: stretch;
     justify-content: space-between;
     gap: 0.5rem;
+    padding-bottom: 0.8rem;
 }
 
 .hotelTitle {
@@ -31,6 +32,13 @@
 
 .hotelRoom {
     padding: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    justify-content: space-between;
+    align-items: stretch;
+    overflow: auto;
+    width: 100%;
 }
 
 .roomTitle {

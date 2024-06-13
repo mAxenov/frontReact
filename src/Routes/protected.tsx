@@ -1,48 +1,62 @@
 import { admin, client, manager, noRole } from 'src/assets/roles';
-import MainLayout from 'src/components/layout/MainLayout';
-import Hotel from 'src/pages/Hotel';
+import AllHotels from 'src/pages/admin/AllHotels';
+import CreateHotel from 'src/pages/admin/CreateHotel';
+import Hotel from 'src/pages/admin/Hotel';
 import Reservations from 'src/pages/Reservations/Reservations';
-import AllHotels from 'src/pages/allHotels';
-import CreateHotel from 'src/pages/createHotel';
-import SearchHotel from 'src/pages/searchHotel';
-import UsersPage from 'src/pages/users';
+import SearchRoom from 'src/pages/SearchRoom';
+import UsersPage from 'src/pages/admin/Users';
+import AdminLayout from 'src/components/layout/AdminLayout';
+import ClientLayout from 'src/components/layout/ClientLayout';
+import HotelPage from 'src/pages/Hotel';
 
-const protectedRoutes = {
-  path: '/',
-  element: <MainLayout />,
-  children: [
-    {
-      path: 'users',
-      element: <UsersPage />,
-      roles: manager,
-    },
-    {
-      path: '/',
-      element: <SearchHotel />,
-      roles: noRole,
-    },
-    {
-      path: 'admin/hotels/create',
-      element: <CreateHotel />,
-      roles: admin,
-    },
-    {
-      path: 'admin/hotels/all',
-      element: <AllHotels />,
-      roles: admin,
-    },
-    {
-      path: 'admin/hotels/:id',
-      element: <Hotel />,
-      roles: admin,
-    },
+const routes = [
+  {
+    path: '/admin',
+    element: <AdminLayout />,
+    children: [
+      {
+        path: 'hotels/create',
+        element: <CreateHotel />,
+        roles: admin,
+      },
+      {
+        path: 'hotels/all',
+        element: <AllHotels />,
+        roles: admin,
+      },
+      {
+        path: 'hotels/:id',
+        element: <Hotel />,
+        roles: admin,
+      },
+    ],
+  },
+  {
+    path: '/',
+    element: <ClientLayout />,
+    children: [
+      {
+        path: '/',
+        element: <SearchRoom />,
+        roles: noRole,
+      },
+      {
+        path: 'hotel/details',
+        element: <HotelPage />,
+        roles: noRole,
+      },
+      {
+        path: 'client/reservations',
+        element: <Reservations />,
+        roles: client,
+      },
+      {
+        path: 'users',
+        element: <UsersPage />,
+        roles: manager,
+      },
+    ],
+  },
+];
 
-    {
-      path: 'client/reservations',
-      element: <Reservations />,
-      roles: client,
-    },
-  ],
-};
-
-export default protectedRoutes;
+export default routes;

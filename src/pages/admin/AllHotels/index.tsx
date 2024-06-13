@@ -1,13 +1,23 @@
 import { useGetHotelsQuery } from 'src/API/hotelsApi';
-import HotelCard from './hotelCard/HotelCard';
+
 import styles from './style.module.css';
+import Box from 'src/components/UI/box/Box';
+import H1 from 'src/components/UI/heading/H1/H1';
+
+import { useState } from 'react';
+import SearchHotel from './searchHotel/SearchHotel';
+import HotelCard from './hotelCard/HotelCard';
+
 // import { useCallback, useState } from 'react';
 // import Pagination from 'src/components/UI/Pagination/Pagination';
 // const ROWS_PER_PAGE = 10;
 // const getTotalPageCount = (rowCount: number): number =>
 //   Math.ceil(rowCount / ROWS_PER_PAGE);
+// { title },
+// { skip: title.length === 0 }
 function AllHotels() {
-  const { data, isLoading } = useGetHotelsQuery('');
+  const [title, setTitle] = useState('');
+  const { data, isLoading } = useGetHotelsQuery({ title });
   // const [page, setPage] = useState(1);
   // const handleNextPageClick = useCallback(() => {
   //   const current = page;
@@ -26,6 +36,10 @@ function AllHotels() {
   return (
     <>
       <div className={styles.wrapper}>
+        <Box>
+          <H1>Все гостиницы</H1>
+          <SearchHotel formHandler={setTitle} />
+        </Box>
         {isLoading && <h1>Loading...</h1>}
         {data &&
           data.map((hotel) => <HotelCard key={hotel.id} hotel={hotel} />)}

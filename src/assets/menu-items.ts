@@ -8,7 +8,7 @@ const menuItems = {
     {
       id: 'allHotel',
       title: '> Все гостиницы',
-      url: '/admin/hotels/all',
+      url: 'hotels/all',
       allowedRoles: admin,
     },
     {
@@ -20,7 +20,7 @@ const menuItems = {
     {
       id: 'createHotel',
       title: '> Добавить гостиницу',
-      url: 'admin/hotels/create',
+      url: 'hotels/create',
       allowedRoles: admin,
     },
     {

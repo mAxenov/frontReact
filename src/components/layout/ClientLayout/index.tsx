@@ -1,11 +1,15 @@
 import { Outlet } from 'react-router-dom';
-import MainLayout from '../MainLayout';
+import Header from 'src/components/UI/Header/Header';
+import Wrapper from '../Wrapper/Wrapper';
 
-function ClientLayout() {
+function ClientLayout(): JSX.Element {
   return (
-    <MainLayout>
-      <Outlet />
-    </MainLayout>
+    <>
+      <Header />
+      <Wrapper>
+        <Outlet />
+      </Wrapper>
+    </>
   );
 }
 

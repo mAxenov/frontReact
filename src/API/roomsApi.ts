@@ -24,6 +24,21 @@ export const roomsApi = apiSlice.injectEndpoints({
         if (hotel) params.append('hotel', hotel);
 
         return {
+          url: `/admin/hotel-rooms?${params.toString()}`,
+          method: 'GET',
+        };
+      },
+      providesTags: ['Hotel', 'Room'],
+    }),
+    searchRooms: builder.query({
+      query: ({ hotel, dateStart, dateEnd }) => {
+        console.log(hotel, dateStart, dateEnd);
+        const params = new URLSearchParams();
+        if (hotel) params.append('hotel', hotel);
+        if (dateStart) params.append('dateStart', dateStart);
+        if (dateEnd) params.append('dateEnd', dateEnd);
+
+        return {
           url: `/common/hotel-rooms?${params.toString()}`,
           method: 'GET',
         };
@@ -37,4 +52,5 @@ export const {
   useCreateRoomMutation,
   useUpdateRoomMutation,
   useGetRoomsQuery,
+  useSearchRoomsQuery,
 } = roomsApi;

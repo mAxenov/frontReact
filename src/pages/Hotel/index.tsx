@@ -1,84 +1,41 @@
-import { useLocation, useParams } from 'react-router-dom';
-import styles from './style.module.css';
+import styles from './index.module.css';
 import Box from 'src/components/UI/box/Box';
-import { useEffect, useState } from 'react';
-import { THotel } from 'src/types/hotel';
-import ShowHotel from './ShowHotel/ShowHotel';
-import { useUpdateHotelMutation } from 'src/API/hotelsApi';
-import CreateForm from '../createHotel/createForm/CreateForm';
-import Room from './Room/Room';
-import { useGetRoomsQuery } from 'src/API/roomsApi';
-import CreateRoom from './createRoom/CreateRoom';
+import SearchRoomForm from '../SearchRoom/SearchRoomForm/SearchRoomForm';
+import { useSearchRoomsQuery } from 'src/API/roomsApi';
+import useSearchHotelParams from 'src/utils/hooks/useSearchHotelParams';
+import H1 from 'src/components/UI/heading/H1/H1';
+// import { THotelAndRooms } from '../SearchRoom/HotelCard/types';
 
-function Hotel() {
-  const { state } = useLocation();
-  const { hotel: initHotel }: { hotel: THotel } = state;
-  const { id } = useParams();
-  const [isEdit, setEdit] = useState(false);
-  const [isCreate, setCreateRoom] = useState(false);
-  const [hotel, setHotel] = useState(initHotel);
-  const [rooms, setRooms] = useState([]);
-  const { data } = useGetRoomsQuery({ hotel: id }, {});
+// : { data?: THotelAndRooms[]; isFetching: boolean }
 
-  const [updateHotel, { isLoading }] = useUpdateHotelMutation();
-  const createHandler = async (dto: FormData) => {
-    await updateHotel({ id, body: dto })
-      .unwrap()
-      .then((hotel) => {
-        setHotel(hotel);
-      });
+function HotelPage() {
+  const { dateStart, dateEnd, hotel } = useSearchHotelParams();
+  const { data, isFetching } = useSearchRoomsQuery(
+    { dateStart, dateEnd, hotel },
+    { skip: !dateEnd }
+  );
 
-    setEdit(false);
-  };
-
-  useEffect(() => {
-    if (data) {
-      setRooms(data);
-    }
-  }, [data]);
-  console.log(rooms);
+  console.log('data', data);
   return (
-    <>
-      <Box className={styles.hotelCard}>
-        {isEdit ? (
-          <CreateForm
-            formHandler={createHandler}
-            isLoading={isLoading}
-            setting={{
-              title: { name: 'Название гостиницы', value: hotel.title },
-              description: {
-                name: 'Описание гостиницы',
-                value: hotel.description,
-              },
-              images: hotel.images,
-              buttonOne: 'Сохранить',
-              buttonTwo: {
-                name: 'Отмена',
-                handler: () => setEdit(false),
-                disabled: isCreate,
-              },
-            }}
-          />
-        ) : (
-          <ShowHotel
-            hotel={hotel}
-            editHandler={() => setEdit(true)}
-            roomHandler={() => setCreateRoom(true)}
-          />
-        )}
-      </Box>
-      {isCreate && id && (
-        <CreateRoom
-          id={id}
-          onSucces={() => setCreateRoom(false)}
-          handlerCancel={() => setCreateRoom(false)}
-        />
+    <div className={styles.hotelPage}>
+      {isFetching && <h1>Loading...</h1>}
+      {data?.length > 0 && (
+        <>
+          <Box className={styles.hotel}>
+            <H1 className={styles.hotelTitle}>{data[0].hotelDetails.title}</H1>
+          </Box>
+
+          <Box>
+            <SearchRoomForm />
+          </Box>
+
+          <Box className={styles.rooms}>
+            <h3 className={styles.roomsTitle}>Доступные номера</h3>
+          </Box>
+        </>
       )}
-      {rooms.length > 0 &&
-        id &&
-        rooms.map((room) => <Room room={room} hotelId={id} isCreate={false} />)}
-    </>
+    </div>
   );
 }
 
-export default Hotel;
+export default HotelPage;

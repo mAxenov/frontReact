@@ -1,6 +1,6 @@
 import Box from 'src/components/UI/box/Box';
 import styles from './room.module.css';
-import CreateForm from 'src/pages/createHotel/createForm/CreateForm';
+import CreateForm from 'src/pages/admin/CreateHotel/createForm/CreateForm';
 import { useState } from 'react';
 import ShowHotel from '../ShowHotel/ShowHotel';
 import { useUpdateRoomMutation } from 'src/API/roomsApi';

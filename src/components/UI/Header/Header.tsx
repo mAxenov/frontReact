@@ -1,8 +1,8 @@
 import { NavLink } from 'react-router-dom';
-import Wrapper from '../../wrapper/Wrapper';
 import styles from './header.module.css';
 import Logo from './logo/Logo';
 import UserProfile from './userprofile/UserProfile';
+import Wrapper from 'src/components/layout/Wrapper/Wrapper';
 
 function Header() {
   return (

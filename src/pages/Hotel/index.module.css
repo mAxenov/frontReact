@@ -1,0 +1,16 @@
+.hotelPage {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.hotelTitle, .roomsTitle {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.rooms {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem
+}
