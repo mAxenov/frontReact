@@ -1,5 +1,6 @@
 import React from 'react';
-import Styles from './pagination.module.css';
+import styles from './pagination.module.css';
+import MyButton from '../button/MyButton';
 
 type PaginationProps = {
   onNextPageClick: () => void;
@@ -14,7 +15,7 @@ type PaginationProps = {
   };
 };
 
-const Pagination = (props: PaginationProps) => {
+const PrePagination = (props: PaginationProps) => {
   const { nav = null, disable, onNextPageClick, onPrevPageClick } = props;
 
   const handleNextPageClick = () => {
@@ -25,32 +26,34 @@ const Pagination = (props: PaginationProps) => {
   };
 
   return (
-    <div className={Styles.paginator}>
-      <button
-        className={Styles.arrow}
+    <div className={styles.paginator}>
+      <MyButton
+        className={styles.arrow}
         type="button"
+        color="secondary"
         onClick={handlePrevPageClick}
         disabled={disable.left}
       >
-        {'<'}
-      </button>
+        {'Назад'}
+      </MyButton>
       {nav && (
-        <span className={Styles.navigation}>
+        <span className={styles.navigation}>
           {nav.current} / {nav.total}
         </span>
       )}
-      <button
-        className={Styles.arrow}
+      <MyButton
+        className={styles.arrow}
         type="button"
+        color="secondary"
         onClick={handleNextPageClick}
         disabled={disable.right}
       >
-        {'>'}
-      </button>
+        {'Вперед'}
+      </MyButton>
     </div>
   );
 };
 
-const MemoizedPagination = React.memo(Pagination);
+const Pagination = React.memo(PrePagination);
 
-export default MemoizedPagination;
+export default Pagination;

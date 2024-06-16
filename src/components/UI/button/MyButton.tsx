@@ -18,11 +18,14 @@ const MyButton = React.memo<IMyButtonProps>(
     const classes = [cl.myButton, rest.disabled && cl.disabled]
       .filter(Boolean)
       .join(' ');
-
+    console.log(color);
+    const colorValue = colorButton[color];
     return (
       <button
-        style={{ backgroundColor: colorButton[color] }}
-        className={`${classes} ${className ? className : ''}`}
+        // style={{ backgroundColor: colorButton[color] }}
+        className={`${classes} ${className ? className : ''} ${
+          colorValue ? cl[color] : ''
+        }`}
         {...rest}
       >
         {children}

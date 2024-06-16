@@ -1,11 +1,14 @@
 import { TUser } from 'src/types/auth.type';
 import styles from './userTable.module.css'; // Подключаем стили
+import MyButton from 'src/components/UI/button/MyButton';
 
 type TProps = {
   users: TUser[];
+  authRole: string | undefined;
+  // handleUserReservations: (userId: string) => void;
 };
 
-const UserTable = ({ users }: TProps) => {
+const UserTable = ({ users, authRole }: TProps) => {
   return (
     <div className={styles.tableWrapper}>
       <table className={styles.table}>
@@ -15,6 +18,7 @@ const UserTable = ({ users }: TProps) => {
             <th className={styles.headItem}>ФИО</th>
             <th className={styles.headItem}>Телефон</th>
             <th className={styles.headItem}>Email</th>
+            {authRole === 'manager' && <th className={styles.headItem}></th>}
           </tr>
         </thead>
         <tbody>
@@ -24,6 +28,11 @@ const UserTable = ({ users }: TProps) => {
               <td className={styles.rowItem}>{user.name}</td>
               <td className={styles.rowItem}>{user.contactPhone}</td>
               <td className={styles.rowItem}>{user.email}</td>
+              {authRole === 'manager' && (
+                <td className={styles.rowItem}>
+                  <MyButton className={styles.button}>Список броней</MyButton>
+                </td>
+              )}
             </tr>
           ))}
         </tbody>

@@ -15,6 +15,45 @@ function ProfileBody({ user }: TProps) {
     //window.location.replace('/');
   };
 
+  let content;
+  switch (user.role) {
+    case 'manager':
+      content = (
+        <div className={styles.point}>
+          <Link to={'/users'} className={styles.pointButton}>
+            <div className={styles.pointText}>Управление пользователями</div>
+          </Link>
+        </div>
+      );
+      break;
+    case 'admin':
+      content = (
+        <>
+          <div className={styles.point}>
+            <Link to={'/users'} className={styles.pointButton}>
+              <div className={styles.pointText}>Управление пользователями</div>
+            </Link>
+          </div>
+          <div className={styles.point}>
+            <Link to={'/admin/hotels/all'} className={styles.pointButton}>
+              <div className={styles.pointText}>Управление гостиницами</div>
+            </Link>
+          </div>
+        </>
+      );
+      break;
+
+    case 'client':
+      content = (
+        <div className={styles.point}>
+          <Link to={'/client/reservations'} className={styles.pointButton}>
+            <div className={styles.pointText}>Мои бронирования</div>
+          </Link>
+        </div>
+      );
+      break;
+  }
+
   return (
     <div className={styles.section}>
       <div className={styles.head}>Учетная запись</div>
@@ -34,13 +73,7 @@ function ProfileBody({ user }: TProps) {
         <div className={styles.pointText}>Права доступа:</div>
         <div className={styles.pointText}>{user.role}</div>
       </div>
-      {user.role === 'client' && (
-        <div className={styles.point}>
-          <Link to={'/client/reservations'} className={styles.pointButton}>
-            <div className={styles.pointText}>Мои бронирования</div>
-          </Link>
-        </div>
-      )}
+      {content && content}
 
       <MyButton onClick={onClickHandler}>Выйти</MyButton>
     </div>

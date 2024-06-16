@@ -7,8 +7,8 @@ import * as Yup from 'yup';
 import { ChangeEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setDate } from 'src/store/slices/searchSlice';
-import { useSearchParams } from 'react-router-dom';
 import useSearchHotelParams from 'src/utils/hooks/useSearchHotelParams';
+import useSetParams from 'src/utils/hooks/useSetParams';
 function SearchRoomForm({
   // formHandler,
   initDates,
@@ -18,7 +18,7 @@ function SearchRoomForm({
 }) {
   const { dateStart, dateEnd } = useSearchHotelParams();
   const todayString = new Date().toISOString().split('T')[0];
-  const [, setSearchParams] = useSearchParams();
+  const setParams = useSetParams();
   const [startDate, setStartDate] = useState(
     dateStart ? String(initDates?.dateStart) : ''
   );
@@ -47,7 +47,7 @@ function SearchRoomForm({
           dateEnd: values.dateEnd,
         };
         // let params = serializeFormQuery(roomSearch);
-        setSearchParams({
+        setParams({
           dateStart: String(values.dateStart),
           dateEnd: String(values.dateEnd),
         });
@@ -86,6 +86,7 @@ function SearchRoomForm({
                 />
               </div>
             </div>
+
             <MyButton className={styles.button} type="submit">
               Искать
             </MyButton>

@@ -2,15 +2,32 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    padding-bottom: 1rem;
 }
 
-.hotelTitle, .roomsTitle {
-    font-size: 1.2rem;
+.hotelTitle {
+    font-size: 1.5rem;
+
+}
+
+.roomsTitle {
+    font-size: 1.3rem;
     font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.hotelImages {
+    height: 260px;
 }
 
 .rooms {
     display: flex;
     flex-direction: column;
     gap: 1rem
+}
+
+.roomsList {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }

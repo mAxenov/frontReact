@@ -6,6 +6,7 @@ const AuthLayout = ({ roles }: { roles: string[] }) => {
   if (!isAuth) {
     return <Navigate to="/" replace />;
   }
+
   return <Outlet />;
 };
 

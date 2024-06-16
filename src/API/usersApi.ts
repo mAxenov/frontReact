@@ -10,8 +10,8 @@ export const usersApi = apiSlice.injectEndpoints({
       }),
     }),
     getUsers: builder.query({
-      query: () => ({
-        url: '/admin/users',
+      query: (role) => ({
+        url: `/${role}/users`,
         method: 'GET',
       }),
     }),

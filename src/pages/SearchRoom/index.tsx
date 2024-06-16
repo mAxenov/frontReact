@@ -10,10 +10,15 @@ import { THotel } from 'src/types/hotel';
 import { useSearchRoomsQuery } from 'src/API/roomsApi';
 import Hotels from './Hotels/Hotels';
 import useSearchHotelParams from 'src/utils/hooks/useSearchHotelParams';
+import Pagination from 'src/components/UI/Pagination/Pagination';
+import usePagination from 'src/utils/hooks/usePagination';
+
+const ROWS_PER_PAGE = 10;
 
 function SearchRoom() {
   const [hotelId, setHotelId] = useState('');
   const [title, setTitle] = useState('');
+
   const { dateStart, dateEnd } = useSearchHotelParams();
 
   const { data: hotels, isFetching } = useGetHotelsQuery(
@@ -21,8 +26,21 @@ function SearchRoom() {
     { skip: title.length === 0 }
   );
 
-  const { data, isLoading } = useSearchRoomsQuery(
-    { dateStart, dateEnd, hotel: hotelId },
+  const [handleNextPageClick, handlePrevPageClick, { currentPage }] =
+    usePagination(ROWS_PER_PAGE);
+
+  const {
+    data,
+    isFetching: isFetchingRooms,
+    isLoading,
+  } = useSearchRoomsQuery(
+    {
+      dateStart,
+      dateEnd,
+      hotel: hotelId,
+      limit: ROWS_PER_PAGE,
+      offset: (currentPage - 1) * ROWS_PER_PAGE,
+    },
     { skip: !dateEnd }
   );
 
@@ -54,6 +72,16 @@ function SearchRoom() {
       </Box>
       {isLoading && <h1>Loading...</h1>}
       {data?.length > 0 && <Hotels data={data} />}
+      {(ROWS_PER_PAGE <= data?.length || currentPage > 1) && (
+        <Pagination
+          onNextPageClick={() => handleNextPageClick(data?.length)}
+          onPrevPageClick={handlePrevPageClick}
+          disable={{
+            left: currentPage === 1 || isFetchingRooms,
+            right: ROWS_PER_PAGE > data?.length || isFetchingRooms,
+          }}
+        />
+      )}
     </div>
   );
 }

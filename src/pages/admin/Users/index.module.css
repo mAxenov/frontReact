@@ -8,5 +8,17 @@
 .head {
     font-size: 2rem;
     font-weight: 600;
+
+}
+
+.header {
+    display: flex;
+    align-items: center;
     margin-bottom: 1rem;
+    gap: 2rem;
+}
+
+.button {
+    margin-left: auto;
+
 }

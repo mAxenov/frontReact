@@ -2,21 +2,27 @@ import { apiSlice } from './apiSlice';
 
 export const roomsApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    createRoom: builder.mutation({
+    createReservation: builder.mutation({
       query: (body) => ({
-        url: '/admin/hotel-rooms',
+        url: '/client/reservations',
         method: 'POST',
         body,
       }),
-      invalidatesTags: ['Hotel'],
+      invalidatesTags: ['Reservation', 'Hotel', 'Room'],
     }),
-    updateRoom: builder.mutation({
-      query: ({ id, body }) => ({
-        url: `/admin/hotel-rooms/${id}`,
-        method: 'PUT',
-        body,
+    canselReservation: builder.mutation({
+      query: (id) => ({
+        url: `/client/reservations/${id}`,
+        method: 'DELETE',
       }),
-      invalidatesTags: ['Hotel', 'Room'],
+      invalidatesTags: ['Reservation', 'Hotel', 'Room'],
+    }),
+    canselReservationManager: builder.mutation({
+      query: (id) => ({
+        url: `/manager/reservations/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Reservation', 'Hotel', 'Room'],
     }),
     getReservationsUser: builder.query({
       query: () => {
@@ -25,13 +31,24 @@ export const roomsApi = apiSlice.injectEndpoints({
           method: 'GET',
         };
       },
-      //providesTags: ['Hotel', 'Room'],
+      providesTags: ['Reservation'],
+    }),
+    getReservationsByUserId: builder.query({
+      query: (userId) => {
+        return {
+          url: '/manager/reservations/' + userId,
+          method: 'GET',
+        };
+      },
+      providesTags: ['Reservation'],
     }),
   }),
 });
 
 export const {
-  useCreateRoomMutation,
-  useUpdateRoomMutation,
+  useCreateReservationMutation,
+  useCanselReservationMutation,
+  useGetReservationsByUserIdQuery,
   useGetReservationsUserQuery,
+  useCanselReservationManagerMutation,
 } = roomsApi;

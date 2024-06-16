@@ -10,9 +10,25 @@
     font-weight: 500;
 }
 
-.myButton .success {
-    color: #1AA053;
+.myButton.success {
+    background-color: #1AA053;
 }
+
+.myButton.error {
+    background-color: #E15D5D;
+}
+
+
+.myButton.primary {
+    background-color: #5d73e1;
+}
+
+
+.myButton.secondary {
+    background-color: #fff;
+    color: #5d73e1;
+}
+
 
 .myButton:hover {
     opacity: 0.8;
@@ -20,6 +36,18 @@
 }
 
 .myButton:disabled {
+    opacity: 0.5;
     background-color: #adb5bd;
     cursor: not-allowed;
+    color: #fff;
+}
+
+.myButton.secondary:disabled {
+    opacity: 0.5;
+    background-color: #fff;
+    color: #5d73e1;
+}
+
+.myButton:disabled:hover {
+    opacity: 0.5;
 }

@@ -21,7 +21,6 @@ export const hotelsApi = apiSlice.injectEndpoints({
     }),
     getHotels: builder.query<THotel[], TSearchHotelParams>({
       query: ({ limit, offset, title }) => {
-        // const { limit, offset, title }: TSearchHotelParams = arg;
         const params = new URLSearchParams();
         if (limit) params.append('limit', limit.toString());
         if (offset) params.append('offset', offset.toString());

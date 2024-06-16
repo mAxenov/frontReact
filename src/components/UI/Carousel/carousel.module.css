@@ -15,21 +15,20 @@
     align-items: center;
     width: 100%;
     height: 100%;
-    position: relative;
+    transition: transform 0.5s ease-in-out;
+    gap: 0.5rem;
+}
+
+.image {
+    height: 100%;
+    width: 100%;
 }
 
 .carouselImage {
-    display: none;
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-
-.carouselImage.active {
-    display: block;
-    opacity: 1;
+    border-radius: 8px;
 }
 
 .carouselButton {
@@ -53,14 +52,11 @@
 }
 
 .carouselButton:first-of-type {
-    left: 0px;
-
+    left: 0;
 }
 
 .carouselButton:last-of-type {
-    right: 0px;
-
-
+    right: 0;
 }
 
 .carouselIndicators {
