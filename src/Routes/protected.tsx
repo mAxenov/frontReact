@@ -8,6 +8,8 @@ import UsersPage from 'src/pages/admin/Users';
 import AdminLayout from 'src/components/layout/AdminLayout';
 import ClientLayout from 'src/components/layout/ClientLayout';
 import HotelPage from 'src/pages/Hotel';
+import UserRegistration from 'src/pages/admin/UserRegistration/UserRegistration';
+import UserReservation from 'src/pages/admin/UserReservation/UserReservation';
 
 const routes = [
   {
@@ -54,6 +56,21 @@ const routes = [
         path: 'users',
         element: <UsersPage />,
         roles: manager,
+      },
+      {
+        path: '/admin/users/registration',
+        element: <UserRegistration />,
+        roles: manager,
+      },
+      {
+        path: '/manager/reservations/:id',
+        element: <UserReservation />,
+        roles: manager,
+      },
+      {
+        path: '*',
+        element: <div>404</div>,
+        roles: noRole,
       },
     ],
   },

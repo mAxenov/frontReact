@@ -6,6 +6,7 @@ const colorButton = {
   error: '#E15D5D',
   primary: '#5d73e1',
   secondary: '#e1855d',
+  orange: '#E1855D',
 };
 
 interface IMyButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -18,7 +19,6 @@ const MyButton = React.memo<IMyButtonProps>(
     const classes = [cl.myButton, rest.disabled && cl.disabled]
       .filter(Boolean)
       .join(' ');
-    console.log(color);
     const colorValue = colorButton[color];
     return (
       <button

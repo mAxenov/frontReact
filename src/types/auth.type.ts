@@ -6,3 +6,11 @@ export type TUser = {
   contactPhone: string;
   role: string;
 };
+
+export type TUserWithId = {
+  id: string;
+  email: string;
+  name: string;
+  contactPhone: string;
+  role: string;
+};

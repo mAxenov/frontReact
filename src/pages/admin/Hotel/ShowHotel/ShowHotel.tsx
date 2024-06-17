@@ -35,7 +35,7 @@ function ShowHotel({
           <p>{hotel.description}</p>
         </span>
         <div className={styles.btnGroup}>
-          <MyButton color="secondary" onClick={editHandler}>
+          <MyButton color="orange" onClick={editHandler}>
             Редактировать
           </MyButton>
           {roomHandler && (

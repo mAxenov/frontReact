@@ -1,34 +1,38 @@
 import { Form, Formik } from 'formik';
 import MyInput from 'src/components/UI/Input/MyInput';
 import MyButton from 'src/components/UI/button/MyButton';
-import styles from './searchHotel.module.css';
-function SearchHotel({
+import styles from './simpleSearch.module.css';
+function SimpleSearch({
+  placeholder,
   formHandler,
+  name,
 }: {
-  formHandler: (hotelName: string) => void;
+  placeholder: string;
+  formHandler: (value: string) => void;
+  name: string;
 }) {
   return (
     <Formik
       initialValues={{
-        hotelName: '',
+        value: '',
       }}
       onSubmit={async (values) => {
-        formHandler(values.hotelName);
+        formHandler(values.value);
       }}
     >
       {() => (
         <Form className={styles.form}>
           <MyInput
-            name="hotelName"
+            name="value"
             type="text"
-            placeholder="Поиск по гостиницам"
+            placeholder={placeholder}
             disableVerify={true}
           />
-          <MyButton type="submit">Поиск</MyButton>
+          <MyButton type="submit">{name}</MyButton>
         </Form>
       )}
     </Formik>
   );
 }
 
-export default SearchHotel;
+export default SimpleSearch;

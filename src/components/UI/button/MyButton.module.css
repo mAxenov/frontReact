@@ -29,6 +29,10 @@
     color: #5d73e1;
 }
 
+.myButton.orange {
+    background-color: #E1855D;
+}
+
 
 .myButton:hover {
     opacity: 0.8;

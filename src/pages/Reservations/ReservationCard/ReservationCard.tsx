@@ -1,7 +1,7 @@
 import MyButton from 'src/components/UI/button/MyButton';
 import styles from './reservationCard.module.css';
 import Box from 'src/components/UI/box/Box';
-import { TReservation } from './types';
+import { TReservation } from 'src/types/reservation.type';
 function ReservationCard({
   reservation,
   handleCancelReservation,

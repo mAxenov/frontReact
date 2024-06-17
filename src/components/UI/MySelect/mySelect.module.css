@@ -1,0 +1,57 @@
+.inputGroup {
+    position: relative;
+    width: 100%;
+}
+
+.wrapperSvg {
+    height: 1.2rem;
+    margin: auto;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.areaGroup>.wrapperSvg {
+    position: absolute;
+    top: 0.84rem;
+    right: 0.875rem;
+}
+
+.areaGroup label {
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #8A92A6;
+}
+
+.MySelect {
+    padding: 10px;
+    border: 1px solid #EEEEEE;
+    border-radius: 5px;
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    resize: none;
+}
+
+.MySelect:focus {
+    outline: none;
+    border: 1px solid #5d73e1;
+}
+
+.MySelect.error {
+    border: 1px solid #c03221;
+}
+
+.MySelect.valid {
+    border: 1px solid #1AA053;
+}
+
+
+
+.errorMsg {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 175%;
+    color: #c03221;
+}
