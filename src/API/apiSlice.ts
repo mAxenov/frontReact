@@ -42,6 +42,13 @@ const baseQueryWithReauth: BaseQueryFn = async (args, api, extraOptions) => {
 
 export const apiSlice = createApi({
   baseQuery: baseQueryWithReauth,
-  tagTypes: ['Hotel', 'Hotels', 'Room', 'Reservation'],
+  tagTypes: [
+    'Hotel',
+    'Hotels',
+    'Room',
+    'Reservation',
+    'User',
+    'SupportRequest',
+  ],
   endpoints: () => ({}),
 });

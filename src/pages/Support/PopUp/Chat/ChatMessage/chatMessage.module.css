@@ -1,0 +1,51 @@
+.message {
+    padding: 10px 0 10px 20px;
+    width: 100%;
+}
+
+.messageBody {
+    display: flex;
+    justify-content: flex-start;
+    gap: 30px
+}
+
+.messageLogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background-color: #5d73e1;
+    color: white;
+    font-size: 20px;
+    border-radius: 50%;
+    font-weight: 700;
+}
+
+.messageContent {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: calc(85% - 70px);
+}
+
+.messageContentInfo {
+    display: flex;
+    gap: 10px;
+}
+
+.messageContentDate {
+    color: gray;
+    white-space: nowrap;
+}
+
+.messageContentUsername {
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.messageContentText {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+}

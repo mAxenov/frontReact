@@ -8,6 +8,7 @@ export const usersApi = apiSlice.injectEndpoints({
         method: 'POST',
         body,
       }),
+      invalidatesTags: ['User'],
     }),
     getUsers: builder.query({
       query: ({ role, searchParams, limit = 10, offset }) => {
@@ -21,6 +22,7 @@ export const usersApi = apiSlice.injectEndpoints({
           method: 'GET',
         };
       },
+      providesTags: ['User'],
     }),
   }),
 });

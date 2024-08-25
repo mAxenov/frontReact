@@ -61,7 +61,10 @@ function UsersPage() {
         const newUser = data?.map((item: TUserWithId) => ({
           ...item,
           reservationBtn: (
-            <MyButton onClick={() => handleUserReservation(item)}>
+            <MyButton
+              className={styles.buttonReservation}
+              onClick={() => handleUserReservation(item)}
+            >
               Список броней
             </MyButton>
           ),
@@ -69,9 +72,9 @@ function UsersPage() {
 
         setUsers(newUser);
         setRowsTable([...rows, { field: 'reservationBtn', headerName: '' }]);
+      } else {
+        setUsers(data);
       }
-    } else {
-      setUsers(data);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, isError, user?.role]);

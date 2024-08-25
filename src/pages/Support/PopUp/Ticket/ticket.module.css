@@ -1,0 +1,70 @@
+.ticket {
+    cursor: pointer;
+    width: 100%;
+    padding: 30px 0px;
+    border-top: 1px solid rgb(224, 224, 224);
+}
+
+.ticketBody {
+    display: flex;
+    justify-content: flex-start;
+    gap: 30px
+}
+
+.ticketLogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 70px;
+    background-color: #5d73e1;
+    color: white;
+    font-size: 20px;
+    border-radius: 50%;
+    font-weight: 700;
+    position: relative;
+}
+
+.ticketContent {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    width: calc(85% - 70px);
+}
+
+.ticketContentDate {
+    color: gray;
+    white-space: nowrap;
+}
+
+.ticketContentUsername {
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.ticketContentText {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+}
+
+.ticketNewMessage {
+    width: 20px;
+    height: 20px;
+    background-color: rgb(255, 0, 0);
+    border-radius: 50%;
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ticketNewMessage span {
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 14px;
+    text-align: center;
+}

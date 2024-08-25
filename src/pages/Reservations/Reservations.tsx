@@ -4,7 +4,7 @@ import {
   useGetReservationsUserQuery,
 } from 'src/API/reservationApi';
 import ReservationCard from './ReservationCard/ReservationCard';
-import { TReservation } from './ReservationCard/types';
+import { TReservation } from 'src/types/reservation.type';
 
 function Reservations() {
   const { data, isLoading } = useGetReservationsUserQuery('');

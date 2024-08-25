@@ -1,0 +1,19 @@
+.ticketListTabs {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.ticketListTab {
+    color: rgb(155, 155, 155);
+    padding: 25px 0px;
+    font-weight: 500;
+    font-size: 14px;
+    border-top: 4px solid transparent;
+    cursor: pointer;
+}
+
+.tabIsActive {
+    border-top: 4px solid #5d73e1;
+    color: #5d73e1;
+}
