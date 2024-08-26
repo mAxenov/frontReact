@@ -4,6 +4,7 @@ import ContactSupportOutlinedIcon from '@mui/icons-material/ContactSupportOutlin
 import CloseTwoToneIcon from '@mui/icons-material/CloseTwoTone';
 import Popup from './PopUp/Popup';
 import { useSearchParams } from 'react-router-dom';
+import useIsRole from 'src/utils/hooks/useIsRole';
 
 export type TParams = {
   modal: string | null;
@@ -19,6 +20,7 @@ function SupportRequest() {
     id: '',
   });
   const [show, setShow] = useState(false);
+  const roleAlowed = useIsRole(['manager', 'client']);
 
   useEffect(() => {
     const modal = searchParams.get('modal');
@@ -26,7 +28,7 @@ function SupportRequest() {
     const id = searchParams.get('uuid');
 
     setParams({ modal, type, id });
-    if (modal === 'support' && type) {
+    if (modal === 'support') {
       setShow(true);
     } else {
       setShow(false);
@@ -42,6 +44,10 @@ function SupportRequest() {
     }
     setShow(state);
   };
+
+  if (!roleAlowed) {
+    return;
+  }
 
   return (
     <>

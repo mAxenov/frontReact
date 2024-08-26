@@ -29,15 +29,30 @@ function Ticket({
           )}
         </div>
         <div className={styles.ticketContent}>
-          <div className={styles.ticketContentDate}>
-            {formatDate(ticket.lastMessage.sentAt)}
-          </div>
-          <div className={styles.ticketContentUsername}>
-            {' '}
-            {ticket.lastMessage.author.name + ':'}
-          </div>
-          <div className={styles.ticketContentText}>
-            {ticket.lastMessage.text}
+          {ticket.client && (
+            <div className={styles.ticketContentHeader}>
+              <div className={styles.ticketContentItem}>
+                Клиент: <span>{ticket.client.name}</span>
+              </div>
+              <div className={styles.ticketContentItem}>
+                Номер телефона: <span>{ticket.client.contactPhone}</span>
+              </div>
+              <div className={styles.ticketContentItem}>
+                Почта: <span>{ticket.client.email}</span>
+              </div>
+            </div>
+          )}
+
+          <div className={styles.ticketContentBody}>
+            <div className={styles.ticketContentDate}>
+              {formatDate(ticket.lastMessage.sentAt)}
+            </div>
+            <div className={styles.ticketContentUsername}>
+              {ticket.lastMessage.author.name + ':'}
+            </div>
+            <div className={styles.ticketContentText}>
+              {ticket.lastMessage.text}
+            </div>
           </div>
         </div>
       </div>

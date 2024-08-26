@@ -1,6 +1,7 @@
 import MyButton from 'src/components/UI/button/MyButton';
 import styles from './popup.module.css';
 import CloseTwoToneIcon from '@mui/icons-material/CloseTwoTone';
+import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
 import TicketTab from './TicketTab/TicketTab';
 import { useGetSupportRequestsQuery } from 'src/API/supportSlice';
 import { useState } from 'react';
@@ -10,6 +11,8 @@ import { TParams } from '..';
 import Loader from 'src/components/UI/Loader/Loader';
 import NewTicket from './NewTicket/NewTicket';
 import ViewTicket from './ViewTicket/ViewTicket';
+import useAuth from 'src/utils/hooks/useAuth';
+import { useSearchParams } from 'react-router-dom';
 
 type TPopUp = {
   onClose: () => void;
@@ -19,12 +22,15 @@ type TPopUp = {
 function Popup({ onClose, params }: TPopUp) {
   const [tabActive, setTabActive] = useState(false);
   const setParams = useSetParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { user } = useAuth();
   const handleOnTab = (state: boolean) => {
     setTabActive(state);
   };
 
   const { data, isLoading } = useGetSupportRequestsQuery({
     isActive: !tabActive,
+    role: user?.role ? user?.role : 'client',
   });
 
   const handleNewTicket = () => {
@@ -33,6 +39,12 @@ function Popup({ onClose, params }: TPopUp) {
 
   const handleOnTicket = (id: string) => {
     setParams({ modal: 'support', type: 'ticket', uuid: id });
+  };
+
+  const handleBack = () => {
+    searchParams.delete('type');
+    searchParams.delete('uuid');
+    setSearchParams(searchParams);
   };
 
   let Content;
@@ -73,7 +85,14 @@ function Popup({ onClose, params }: TPopUp) {
     <div className={styles.popup}>
       <div className={styles.popupContent}>
         <div className={styles.popupHeader}>
-          <span className={styles.popupHeaderTitle}>Поддержка</span>
+          <div className={styles.popupHeaderContent}>
+            {params && params.modal === 'support' && params.type && (
+              <div className={styles.popupHeaderBack} onClick={handleBack}>
+                <ArrowForwardOutlinedIcon />
+              </div>
+            )}
+            <span className={styles.popupHeaderTitle}>Поддержка</span>
+          </div>
           <CloseTwoToneIcon
             style={{ fontSize: '40px', cursor: 'pointer' }}
             onClick={onClose}

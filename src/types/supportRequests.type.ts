@@ -2,6 +2,7 @@ export type TGetSupportRequests = {
   limit?: number;
   offset?: number;
   isActive: boolean;
+  role: string;
 };
 
 export type TMessage = {
@@ -19,4 +20,12 @@ export type TSupportRequest = {
   isActive: boolean;
   lastMessage: TMessage;
   unreadCount: number;
+  client?: TClient | null;
+};
+
+export type TClient = {
+  id: string;
+  name: string;
+  contactPhone: string;
+  email: string;
 };

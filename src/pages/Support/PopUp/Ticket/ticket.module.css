@@ -23,9 +23,30 @@
     border-radius: 50%;
     font-weight: 700;
     position: relative;
+    flex-shrink: 0;
 }
 
 .ticketContent {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.ticketContentHeader {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.ticketContentItem {
+    color: gray;
+}
+
+.ticketContentItem span {
+    font-weight: 600;
+}
+
+.ticketContentBody {
     display: flex;
     align-items: flex-start;
     gap: 10px;

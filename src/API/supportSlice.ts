@@ -9,20 +9,20 @@ export const hotelsApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     createSupportRequest: builder.mutation({
       query: (body) => ({
-        url: '/client/support-requests/',
+        url: `/client/support-requests/`,
         method: 'POST',
         body,
       }),
       invalidatesTags: ['SupportRequest'],
     }),
     getSupportRequests: builder.query<TSupportRequest[], TGetSupportRequests>({
-      query: ({ limit, offset, isActive }) => {
+      query: ({ limit, offset, isActive, role }) => {
         const params = new URLSearchParams();
         if (limit) params.append('limit', limit.toString());
         if (offset) params.append('offset', offset.toString());
         params.append('isActive', isActive.toString());
         return {
-          url: `/client/support-requests/?${params.toString()}`,
+          url: `/${role}/support-requests/?${params.toString()}`,
           method: 'GET',
         };
       },
@@ -45,6 +45,14 @@ export const hotelsApi = apiSlice.injectEndpoints({
       },
       providesTags: ['SupportRequest'],
     }),
+    markMessagesAsRead: builder.mutation({
+      query: (id) => ({
+        url: `/common/support-requests/${id}/messages/read`,
+        method: 'POST',
+        body: id,
+      }),
+      invalidatesTags: ['SupportRequest'],
+    }),
   }),
 });
 
@@ -53,4 +61,5 @@ export const {
   useGetSupportRequestsQuery,
   useGetSupportRequestsMessageQuery,
   useSendSupportRequestMessageMutation,
+  useMarkMessagesAsReadMutation,
 } = hotelsApi;
