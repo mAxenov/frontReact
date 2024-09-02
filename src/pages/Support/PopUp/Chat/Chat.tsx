@@ -1,7 +1,7 @@
 import MyButton from 'src/components/UI/button/MyButton';
 import styles from './chat.module.css';
 import ChatMessage from './ChatMessage/ChatMessage';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { TMessage } from 'src/types/supportRequests.type';
 
 type TChat = {
@@ -11,12 +11,23 @@ type TChat = {
 
 function Chat({ sendRequst, messages }: TChat) {
   const [onChange, setChange] = useState('');
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
   // const [createRequset] = useCreateSupportRequestMutation();
 
   const handleRequest = () => {
     sendRequst(onChange);
     setChange('');
   };
+
+  const scrollToBottom = () => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current?.scrollIntoView();
+    }
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   return (
     <div className={styles.chat}>
@@ -27,6 +38,7 @@ function Chat({ sendRequst, messages }: TChat) {
             messages.map((message) => (
               <ChatMessage key={message.id} message={message} />
             ))}
+          <div ref={messagesEndRef} />
         </div>
       </div>
       <div className={styles.chatFooter}>
