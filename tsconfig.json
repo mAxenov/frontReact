@@ -22,7 +22,7 @@
 
     "baseUrl": ".",
     "types": ["redux-persist"],
-    "paths": { "src/*": ["src/*"], "@components/*": ["src/components/*"] }
+    "paths": { "src/*": ["src/*"] }
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
