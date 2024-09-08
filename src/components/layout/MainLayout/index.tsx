@@ -1,9 +1,9 @@
 import Box from 'src/components/UI/box/Box';
-import Wrapper from '../Wrapper/Wrapper';
 import styles from './index.module.css';
 import Menu from '../../UI/Menu/Menu';
 import { Outlet } from 'react-router-dom';
 import Header from 'src/components/UI/Header/Header';
+import Wrapper from 'src/components/layout/Wrapper/Wrapper';
 
 function MainLayout(): JSX.Element {
   return (

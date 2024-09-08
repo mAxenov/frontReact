@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import Header from 'src/components/UI/Header/Header';
-import Wrapper from '../Wrapper/Wrapper';
+import Wrapper from 'src/components/layout/Wrapper/Wrapper';
 
 function ClientLayout(): JSX.Element {
   return (
