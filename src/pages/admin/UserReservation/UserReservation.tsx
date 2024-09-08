@@ -9,7 +9,7 @@ import Box from 'src/components/UI/box/Box';
 import MyButton from 'src/components/UI/button/MyButton';
 import H1 from 'src/components/UI/heading/H1/H1';
 import { TReservation } from 'src/types/reservation.type';
-import styles from './UserReservation.module.css';
+import styles from './userReservation.module.css';
 
 const rows = [
   {
