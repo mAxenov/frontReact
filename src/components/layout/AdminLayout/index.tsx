@@ -5,7 +5,7 @@ import Menu from '../../UI/Menu/Menu';
 import { Outlet } from 'react-router-dom';
 import Header from 'src/components/UI/Header/Header';
 
-import Wrapper from '@components/layout/Wrapper/Wrapper';
+import Wrapper from 'src/components/UI/Wrapper/Wrapper';
 
 function AdminLayout(): JSX.Element {
   return (
