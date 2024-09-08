@@ -51,7 +51,7 @@ function Hotel() {
                 value: hotel.description,
               },
               images: hotel.images,
-              buttonOne: 'Сохранить',
+              buttonOne: { name: 'Сохранить' },
               buttonTwo: {
                 name: 'Отмена',
                 handler: () => setEdit(false),

@@ -31,7 +31,13 @@ function Login() {
               </span>
             </div>
           </div>
-          {!isOpenRegistration ? <FormLogin /> : <FormRegistration />}
+          {!isOpenRegistration ? (
+            <FormLogin />
+          ) : (
+            <FormRegistration
+              handleRegistrationSuccess={() => setOpenRegistration(false)}
+            />
+          )}
         </div>
       )}
     </div>

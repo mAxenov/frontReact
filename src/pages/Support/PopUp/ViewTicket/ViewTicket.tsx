@@ -1,4 +1,5 @@
 import {
+  useCloseRequestMutation,
   useGetSupportRequestsMessageQuery,
   useMarkMessagesAsReadMutation,
   useSendSupportRequestMessageMutation,
@@ -11,6 +12,7 @@ import { TMessage } from 'src/types/supportRequests.type';
 
 function ViewTicket({ id }: { id: string }) {
   const [sendRequst] = useSendSupportRequestMessageMutation();
+  const [closeRequest] = useCloseRequestMutation();
   const [markAsRead] = useMarkMessagesAsReadMutation();
   const { message } = useConnectSocket(id);
   const [messages, setMessages] = useState<TMessage[]>([]);
@@ -18,7 +20,7 @@ function ViewTicket({ id }: { id: string }) {
 
   useEffect(() => {
     if (data) {
-      setMessages(data);
+      setMessages(data.messages);
     }
   }, [data]);
 
@@ -44,7 +46,14 @@ function ViewTicket({ id }: { id: string }) {
   if (isLoading) {
     return <Loader />;
   }
-  return <Chat sendRequst={handlerSendRequst} messages={messages} />;
+  return (
+    <Chat
+      sendRequst={handlerSendRequst}
+      closeRequest={() => closeRequest(id)}
+      messages={messages}
+      isActive={data ? data.isActive : false}
+    />
+  );
 }
 
 export default ViewTicket;

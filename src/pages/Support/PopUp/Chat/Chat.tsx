@@ -3,20 +3,28 @@ import styles from './chat.module.css';
 import ChatMessage from './ChatMessage/ChatMessage';
 import { useEffect, useRef, useState } from 'react';
 import { TMessage } from 'src/types/supportRequests.type';
+import useAuth from 'src/utils/hooks/useAuth';
 
 type TChat = {
   sendRequst: (text: string) => void;
+  closeRequest: () => void;
+  isActive: boolean;
   messages?: TMessage[] | null;
 };
 
-function Chat({ sendRequst, messages }: TChat) {
+function Chat({ sendRequst, messages, closeRequest, isActive }: TChat) {
   const [onChange, setChange] = useState('');
+  const { user } = useAuth();
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
   // const [createRequset] = useCreateSupportRequestMutation();
 
   const handleRequest = () => {
     sendRequst(onChange);
     setChange('');
+  };
+
+  const handleClose = () => {
+    closeRequest();
   };
 
   const scrollToBottom = () => {
@@ -41,15 +49,24 @@ function Chat({ sendRequst, messages }: TChat) {
           <div ref={messagesEndRef} />
         </div>
       </div>
-      <div className={styles.chatFooter}>
-        <textarea
-          className={styles.messageInput}
-          placeholder="Текст сообщения..."
-          onChange={(e) => setChange(e.target.value)}
-          value={onChange}
-        ></textarea>
-        <MyButton onClick={handleRequest}>Отправить</MyButton>
-      </div>
+      {isActive && (
+        <div className={styles.chatFooter}>
+          <textarea
+            className={styles.messageInput}
+            placeholder="Текст сообщения..."
+            onChange={(e) => setChange(e.target.value)}
+            value={onChange}
+          ></textarea>
+          <div className={styles.buttons}>
+            {user?.role === 'manager' && (
+              <MyButton onClick={handleClose} color="orange">
+                Закрыть обращение
+              </MyButton>
+            )}
+            <MyButton onClick={handleRequest}>Отправить</MyButton>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

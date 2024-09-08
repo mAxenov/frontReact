@@ -19,17 +19,12 @@ function CreateForm({
     title: { name: string; value: string };
     description: { name: string; value: string };
     images?: string[];
-    buttonOne: string;
+    buttonOne: { name: string; handler?: () => void };
     buttonTwo: { name: string; disabled?: boolean; handler?: () => void };
     buttonThree?: { name: string; disabled?: boolean; handler?: () => void };
   };
 }) {
   const id = useId();
-
-  // // Состояние для хранения списка изображений
-  // const [images, setImages] = useState<string[]>(
-  //   setting.images ? setting.images : []
-  // );
 
   //Состояние для хранения списка изображений
   const [images, setImages] = useState(
@@ -70,12 +65,12 @@ function CreateForm({
         values?.images?.forEach((image: File | string) => {
           formData.append(`images`, image);
         });
-        console.log(formData);
         await formHandler(formData);
         resetForm();
+        setting.buttonOne.handler && setting.buttonOne.handler();
       }}
     >
-      {({ values, resetForm, setFieldValue }) => (
+      {({ values, resetForm, setFieldValue, isValid, dirty }) => (
         <Form className={styles.form}>
           <div className={styles.imagesContainer}>
             {images.map((image, index) => {
@@ -96,33 +91,36 @@ function CreateForm({
                 </div>
               );
             })}
-            <label htmlFor={id} className={styles.fileInputLabel}>
-              <input
-                id={id}
-                type="file"
-                className={styles.fileInput}
-                multiple
-                onChange={(event) => {
-                  const files = event.target.files;
+            {images.length < 10 && (
+              <label htmlFor={id} className={styles.fileInputLabel}>
+                <input
+                  id={id}
+                  type="file"
+                  className={styles.fileInput}
+                  multiple
+                  onChange={(event) => {
+                    const files = event.target.files;
 
-                  if (files == null) return;
+                    if (files == null) return;
 
-                  if (files.length > 10) {
-                    alert('Максимальное количество изображений - 10');
-                    return;
-                  }
+                    if (images.length + files.length > 10) {
+                      alert('Максимальное количество изображений - 10');
+                      return;
+                    }
 
-                  const myFiles = Array.from(files);
-                  setFieldValue('images', [...values.images, ...myFiles]);
-                  const image: string[] = [];
-                  for (let i = 0; i < files.length; i++) {
-                    image.push(URL.createObjectURL(files[i]));
-                  }
-                  setImages((images) => [...images, ...image]);
-                }}
-              />
-              <AddIcon style={{ color: 'inherit', fontSize: 'inherit' }} />
-            </label>
+                    const myFiles = Array.from(files);
+                    setFieldValue('images', [...values.images, ...myFiles]);
+                    const image: string[] = [];
+                    for (let i = 0; i < files.length; i++) {
+                      image.push(URL.createObjectURL(files[i]));
+                    }
+                    setImages((images) => [...images, ...image]);
+                  }}
+                />
+                <AddIcon style={{ color: 'inherit', fontSize: 'inherit' }} />
+              </label>
+            )}
+
             <ErrorMessage name="images" />
           </div>
 
@@ -143,8 +141,12 @@ function CreateForm({
           />
 
           <div className={styles.btnGroup}>
-            <MyButton color={'success'} type="submit" disabled={isLoading}>
-              {setting.buttonOne}
+            <MyButton
+              color={'success'}
+              type="submit"
+              disabled={isLoading || !isValid || !dirty}
+            >
+              {setting.buttonOne.name}
             </MyButton>
             <MyButton
               onClick={() =>

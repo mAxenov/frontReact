@@ -27,7 +27,7 @@ function CreateRoom(props: CreateRoomProps) {
             name: 'Описание номера',
             value: '',
           },
-          buttonOne: 'Сохранить',
+          buttonOne: { name: 'Сохранить' },
           buttonTwo: { name: 'Отмена', handler: props.handlerCancel },
         }}
       />

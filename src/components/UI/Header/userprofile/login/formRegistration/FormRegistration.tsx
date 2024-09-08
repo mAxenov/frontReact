@@ -6,7 +6,11 @@ import { useRegistrationMutation } from 'src/API/authApi';
 import MyInput from 'src/components/UI/Input/MyInput';
 import MyButton from 'src/components/UI/button/MyButton';
 
-function FormRegistration() {
+function FormRegistration({
+  handleRegistrationSuccess,
+}: {
+  handleRegistrationSuccess: () => void;
+}) {
   const { t } = useTranslation();
   const [registration, { isLoading }] = useRegistrationMutation();
 
@@ -42,6 +46,7 @@ function FormRegistration() {
         onSubmit={async (values, { setErrors }) => {
           registration(values)
             .unwrap()
+            .then(() => handleRegistrationSuccess())
             .catch(({ data }) =>
               setErrors({
                 [data?.message?.property]: t(data?.message?.message),

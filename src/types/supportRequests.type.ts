@@ -13,6 +13,12 @@ export type TMessage = {
   text: string;
 };
 
+export type TSupportMessages = {
+  id: string;
+  isActive: boolean;
+  messages: TMessage[];
+}
+
 export type TSupportRequest = {
   id: string;
   createdAt: Date;

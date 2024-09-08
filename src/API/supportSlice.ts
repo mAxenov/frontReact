@@ -1,6 +1,6 @@
 import {
   TGetSupportRequests,
-  TMessage,
+  TSupportMessages,
   TSupportRequest,
 } from 'src/types/supportRequests.type';
 import { apiSlice } from './apiSlice';
@@ -36,7 +36,7 @@ export const hotelsApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ['SupportRequest'],
     }),
-    getSupportRequestsMessage: builder.query<TMessage[], string>({
+    getSupportRequestsMessage: builder.query<TSupportMessages, string>({
       query: (id) => {
         return {
           url: `/common/support-requests/${id}/messages`,
@@ -53,6 +53,14 @@ export const hotelsApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ['SupportRequest'],
     }),
+
+    closeRequest: builder.mutation({
+      query: (id) => ({
+        url: `/manager/support-requests/${id}/close`,
+        method: 'POST',
+      }),
+      invalidatesTags: ['SupportRequest'],
+    }),
   }),
 });
 
@@ -62,4 +70,5 @@ export const {
   useGetSupportRequestsMessageQuery,
   useSendSupportRequestMessageMutation,
   useMarkMessagesAsReadMutation,
+  useCloseRequestMutation,
 } = hotelsApi;

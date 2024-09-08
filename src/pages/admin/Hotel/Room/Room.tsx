@@ -38,7 +38,7 @@ function Room(props: RoomProps) {
               value: room.description,
             },
             images: room.images,
-            buttonOne: 'Сохранить',
+            buttonOne: {name:'Сохранить'},
             buttonTwo: { name: 'Отмена', handler: () => setEdit(false) },
           }}
         />
