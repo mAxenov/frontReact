@@ -7,8 +7,8 @@ import useAuth from 'src/utils/hooks/useAuth';
 
 type TChat = {
   sendRequst: (text: string) => void;
-  closeRequest: () => void;
-  isActive: boolean;
+  closeRequest?: () => void;
+  isActive?: boolean;
   messages?: TMessage[] | null;
 };
 
@@ -24,7 +24,7 @@ function Chat({ sendRequst, messages, closeRequest, isActive }: TChat) {
   };
 
   const handleClose = () => {
-    closeRequest();
+    closeRequest && closeRequest();
   };
 
   const scrollToBottom = () => {
@@ -58,7 +58,7 @@ function Chat({ sendRequst, messages, closeRequest, isActive }: TChat) {
             value={onChange}
           ></textarea>
           <div className={styles.buttons}>
-            {user?.role === 'manager' && (
+            {user?.role === 'manager' && handleClose && (
               <MyButton onClick={handleClose} color="orange">
                 Закрыть обращение
               </MyButton>
