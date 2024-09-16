@@ -60,7 +60,7 @@ function SearchInput({
         onChange={handleChange}
         value={query}
         onClick={() => setIsOpen(true)}
-        placeholder="Введите название гостиницы (необязательно)"
+        placeholder="Введите название гостиницы (необязательно) "
       />
       {(items || isLoading) && isOpen && query.length > 0 ? (
         <ul className={styles.hotelList}>
